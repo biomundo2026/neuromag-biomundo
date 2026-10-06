@@ -232,15 +232,17 @@ footer{background:var(--forest-2);color:#B9CBC0;padding:40px 0 96px;font-size:12
 
   gtag('config', 'AW-11359540147');
   function gtag_report_conversion(url) {
-    var callback = function () {
-      if (typeof url !== 'undefined') {
-        window.location = url;
-      }
-    };
+    /*
+      Google Ads: registrar la conversión y mantener esta página abierta
+      mientras se abre WhatsApp en una nueva pestaña/ventana.
+      Así Tag Assistant puede recibir el evento antes de que el usuario
+      abandone la landing.
+    */
     gtag('event', 'conversion', {
-      'send_to': 'AW-11359540147/3am_CMHfjZAdELOnO6gq',
-      'event_callback': callback
+      'send_to': 'AW-11359540147/3am_CMHfjZAdELOnO6gq'
     });
+
+    window.open(url, '_blank', 'noopener,noreferrer');
     return false;
   }
 </script><link rel="icon" type="image/png" href="./favicon.png">
